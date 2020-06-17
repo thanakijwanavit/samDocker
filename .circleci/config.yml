@@ -21,6 +21,9 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: thanakijwanavit/samdocker
+      - docker/build:
+          image: thanakijwanavit/samdocker
+          tag: latest
       - docker/push:
           digest-path: /tmp/digest.txt
           image: thanakijwanavit/samdocker
