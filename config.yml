@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  welcome: circleci/welcome-orb@0.4.1
   docker: circleci/docker@1.2.1
 jobs:
   build-and-push:
@@ -9,16 +10,23 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: thanakijwanavit/samDocker
+          image: thanakijwanavit/mkdocsaws
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: thanakijwanavit/samDocker
+          image: thanakijwanavit/mkdocsaws
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
       - run: pwd
       - run: ls -A
+      - run: sh ./test.sh
+
+
 workflows:
   commit:
     jobs:
       - build-and-push
+      - docker/publish:
+          image: $CIRCLE_PROJECT_USERNAME/mkdocsaws
+          tag: 'latest,tag2,tag3'
+
