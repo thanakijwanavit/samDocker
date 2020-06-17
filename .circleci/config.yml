@@ -21,6 +21,10 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: thanakijwanavit/samdocker
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: thanakijwanavit/samdocker
+          tag: latest
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
