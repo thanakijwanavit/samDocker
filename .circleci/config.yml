@@ -17,10 +17,10 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: thanakijwanavit/samDocker
+          image: thanakijwanavit/samdocker
       - docker/push:
           digest-path: /tmp/digest.txt
-          image: thanakijwanavit/samDocker
+          image: thanakijwanavit/samdocker
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
